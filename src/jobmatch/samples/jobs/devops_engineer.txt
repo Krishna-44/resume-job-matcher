@@ -1,0 +1,16 @@
+DevOps Engineer
+
+About the role
+Run the platform our 50 engineers ship on.
+
+Requirements
+- 3+ years in DevOps or SRE roles
+- AWS
+- Terraform
+- Kubernetes and Docker
+- Linux
+- CI/CD pipelines
+- Python or Bash scripting
+
+Nice to have
+- Prometheus and Grafana

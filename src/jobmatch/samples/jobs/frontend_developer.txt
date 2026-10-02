@@ -1,0 +1,16 @@
+Frontend Developer
+
+About the role
+Build the customer-facing web app used by 200k small businesses.
+
+Requirements
+- 2+ years of professional front-end experience
+- React and TypeScript
+- Solid HTML and CSS
+- Consuming REST APIs
+- Git
+
+Nice to have
+- Next.js
+- Jest or Playwright
+- Figma

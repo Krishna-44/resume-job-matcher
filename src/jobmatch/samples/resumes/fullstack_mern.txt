@@ -1,0 +1,18 @@
+Lina Haddad
+lina.haddad@example.com · 555 010 7788
+
+Summary
+Full-stack developer (MERN) who likes shipping product features end to end.
+
+Experience
+Full-stack Developer, Taskfold — Apr 2025 – Present
+- Built features across a React front end and a Node.js / Express API
+- Designed MongoDB schemas and a GraphQL gateway; wrote REST endpoints for mobile
+Web Developer Intern, Example Labs — Jan 2025 – Mar 2025
+- Built HTML and CSS email templates and small JavaScript widgets
+
+Education
+Bachelor of Computer Applications (BCA), 2021 – 2024
+
+Skills
+JavaScript, React, Node.js, Express, MongoDB, GraphQL, REST APIs, HTML, CSS, Git

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resume Matcher</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface-1: #fcfcfb; --text-primary: #0b0b0b; --text-secondary: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --border: rgba(11,11,11,0.10); --series-1: #2a78d6;
+    --track: #cde2fb; --good: #0ca30c; --warning: #fab219; --critical: #d03b3b; --accent-ink: #1c5cab;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface-1: #1a1a19; --text-primary: #ffffff; --text-secondary: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --border: rgba(255,255,255,0.10); --series-1: #3987e5;
+      --track: #184f95; --accent-ink: #86b6ef;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface-1: #1a1a19; --text-primary: #ffffff; --text-secondary: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --border: rgba(255,255,255,0.10); --series-1: #3987e5;
+    --track: #184f95; --accent-ink: #86b6ef;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--text-primary);
+         font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header, main { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+  header { padding-top: 20px; }
+  h1 { font-size: 20px; margin: 0; }
+  .sub { color: var(--text-secondary); }
+  .inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  @media (max-width: 860px) { .inputs, .results { grid-template-columns: 1fr !important; } }
+  .card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .card h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-secondary); margin: 0 0 10px; }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+  select, button, label.file { font: inherit; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border);
+                               background: var(--surface-1); color: var(--text-primary); cursor: pointer; }
+  label.file input { display: none; }
+  textarea { width: 100%; height: 260px; resize: vertical; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border);
+             background: var(--page); color: var(--text-primary); font: 13px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .actions { display: flex; justify-content: center; margin-bottom: 16px; }
+  button.primary { background: var(--series-1); border-color: var(--series-1); color: #fff; font-weight: 600; padding: 10px 28px; }
+  .results { display: grid; grid-template-columns: 320px 1fr; gap: 16px; padding-bottom: 32px; }
+  .stack { display: grid; gap: 16px; align-content: start; }
+  .hero .value { font-size: 56px; font-weight: 700; line-height: 1; }
+  .hero .value small { font-size: 18px; color: var(--text-secondary); font-weight: 500; }
+  .hero .band { font-size: 16px; font-weight: 600; margin-top: 6px; }
+  .hero .facts { color: var(--text-secondary); margin-top: 10px; }
+  .bars { display: grid; gap: 10px; }
+  .bar-row { display: grid; grid-template-columns: 120px 1fr 44px; gap: 10px; align-items: center; }
+  .bar-row .name { color: var(--text-secondary); font-size: 13px; }
+  .bar-row .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .track { height: 10px; background: var(--grid); border-radius: 4px; position: relative; }
+  .track > span { position: absolute; inset: 0 auto 0 0; background: var(--series-1); border-radius: 4px; }
+  .note { color: var(--muted); font-size: 12px; margin-top: 10px; }
+  ul.skills { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  ul.skills li { display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: start; }
+  .icon { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 700; margin-top: 1px; }
+  .icon.matched { background: var(--good); color: #fff; }
+  .icon.partial { background: var(--warning); color: #0b0b0b; }
+  .icon.missing { background: var(--critical); color: #fff; }
+  .skill-name { font-weight: 600; }
+  .status-label { color: var(--text-secondary); font-size: 12px; margin-left: 6px; }
+  .evidence { color: var(--text-secondary); font-size: 13px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { padding: 2px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-secondary); font-size: 13px; }
+  ol.tips { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 640px) { .two { grid-template-columns: 1fr; } }
+  .tooltip { position: fixed; pointer-events: none; background: var(--surface-1); border: 1px solid var(--border);
+             border-radius: 8px; padding: 6px 10px; font-size: 12px; box-shadow: 0 4px 16px rgba(0,0,0,.12); display: none; }
+  .error { color: var(--critical); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Resume Matcher</h1>
+  <div class="sub">How well does a resume fit a job — and what would make it fit better? Personal details are removed before scoring.</div>
+</header>
+<main>
+  <section class="inputs">
+    <div class="card">
+      <h2>Resume</h2>
+      <div class="row">
+        <select id="resume-sample" aria-label="Sample resume"><option value="">Load a sample…</option></select>
+        <label class="file">Upload .txt / .pdf<input type="file" id="resume-file" accept=".txt,.pdf"></label>
+      </div>
+      <textarea id="resume" placeholder="Paste a resume…" aria-label="Resume text"></textarea>
+    </div>
+    <div class="card">
+      <h2>Job description</h2>
+      <div class="row">
+        <select id="job-sample" aria-label="Sample job"><option value="">Load a sample…</option></select>
+      </div>
+      <textarea id="job" placeholder="Paste a job description…" aria-label="Job description text"></textarea>
+    </div>
+  </section>
+  <div class="actions"><button class="primary" id="match">Match</button></div>
+  <section class="results" id="results" hidden>
+    <div class="stack">
+      <div class="card hero" id="hero"></div>
+      <div class="card">
+        <h2>Score breakdown</h2>
+        <div class="bars" id="bars"></div>
+        <div class="note">Each part is 0–1; its weight is shown on hover. Parts that don't apply to this posting are left out.</div>
+      </div>
+      <div class="card" id="privacy"></div>
+    </div>
+    <div class="stack">
+      <div class="two">
+        <div class="card"><h2>Required skills</h2><ul class="skills" id="required"></ul></div>
+        <div class="card"><h2>Nice to have</h2><ul class="skills" id="preferred"></ul></div>
+      </div>
+      <div class="card"><h2>Suggestions</h2><ol class="tips" id="tips"></ol></div>
+      <div class="card"><h2>Shared terms</h2><div class="chips" id="terms"></div></div>
+    </div>
+  </section>
+</main>
+<div class="tooltip" id="tooltip" role="status"></div>
+<script>
+const $ = (id) => document.getElementById(id);
+const STATUS = { matched: ["✓", "matched"], partial: ["~", "related skill"], missing: ["✗", "missing"] };
+const NAMES = { required_skills: "Required skills", preferred_skills: "Nice to have", text_similarity: "Text similarity", experience: "Experience" };
+
+function el(tag, attrs = {}, children = []) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "text") n.textContent = v; else if (k === "class") n.className = v; else n.setAttribute(k, v);
+  }
+  n.append(...children);
+  return n;
+}
+
+let SAMPLES = { resumes: {}, jobs: {} };
+async function loadSamples() {
+  SAMPLES = await fetch("/api/samples").then((r) => r.json());
+  for (const [kind, select] of [["resumes", $("resume-sample")], ["jobs", $("job-sample")]]) {
+    for (const id of Object.keys(SAMPLES[kind])) select.append(el("option", { value: id, text: id.replaceAll("_", " ") }));
+  }
+  $("resume-sample").value = "ml_student"; $("resume").value = SAMPLES.resumes.ml_student;
+  $("job-sample").value = "ml_engineer_intern"; $("job").value = SAMPLES.jobs.ml_engineer_intern;
+}
+$("resume-sample").addEventListener("change", (e) => { if (e.target.value) $("resume").value = SAMPLES.resumes[e.target.value]; });
+$("job-sample").addEventListener("change", (e) => { if (e.target.value) $("job").value = SAMPLES.jobs[e.target.value]; });
+$("resume-file").addEventListener("change", async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const form = new FormData(); form.append("file", file);
+  const res = await fetch("/api/resume-text", { method: "POST", body: form });
+  const body = await res.json();
+  $("resume").value = res.ok ? body.text : `Could not read file: ${body.detail}`;
+  e.target.value = "";
+});
+
+function skillList(target, items) {
+  target.replaceChildren(...(items.length ? items.map((m) => {
+    const [icon, label] = STATUS[m.status];
+    const detail = m.status === "matched" && m.evidence ? `“${m.evidence}”`
+                 : m.status === "partial" ? `You list ${m.via}, a closely related skill.` : "";
+    return el("li", {}, [
+      el("span", { class: `icon ${m.status}`, "aria-hidden": "true", text: icon }),
+      el("div", {}, [el("span", { class: "skill-name", text: m.requirement }), el("span", { class: "status-label", text: label }),
+                     ...(detail ? [el("div", { class: "evidence", text: detail })] : [])]),
+    ]);
+  }) : [el("li", { class: "evidence", text: "None listed." })]));
+}
+
+function render(r) {
+  const facts = [`${r.candidate_years} yrs dated experience${r.required_years ? ` (asked ${r.required_years}+)` : ""}`,
+                 `degree: ${r.candidate_degree}${r.required_degree !== "not specified" ? ` (asked ${r.required_degree})` : ""}`];
+  $("hero").replaceChildren(
+    el("h2", { text: "Match score" }),
+    el("div", { class: "value" }, [String(Math.round(r.score)), el("small", { text: " / 100" })]),
+    el("div", { class: "band", text: r.band }),
+    el("div", { class: "facts", text: facts.join(" · ") }),
+  );
+  const tooltip = $("tooltip");
+  $("bars").replaceChildren(...Object.entries(r.components).map(([k, v]) => {
+    const fill = el("span"); fill.style.width = `${Math.max(v * 100, 1)}%`;
+    const track = el("div", { class: "track" }, [fill]);
+    const row = el("div", { class: "bar-row", tabindex: "0" }, [el("div", { class: "name", text: NAMES[k] }), track, el("div", { class: "num", text: v.toFixed(2) })]);
+    const show = (x, y) => {
+      tooltip.replaceChildren(el("strong", { text: `${(v * r.weights[k] * 100).toFixed(1)} points` }),
+                              document.createTextNode(` · ${NAMES[k]} ${v.toFixed(2)} × weight ${r.weights[k].toFixed(2)}`));
+      tooltip.style.display = "block"; tooltip.style.left = `${x + 12}px`; tooltip.style.top = `${y + 12}px`;
+    };
+    row.addEventListener("pointermove", (e) => show(e.clientX, e.clientY));
+    row.addEventListener("focus", () => { const b = row.getBoundingClientRect(); show(b.right - 40, b.top); });
+    for (const ev of ["pointerleave", "blur"]) row.addEventListener(ev, () => (tooltip.style.display = "none"));
+    return row;
+  }));
+  const removed = Object.entries(r.redacted).map(([k, n]) => `${k}${n > 1 ? ` ×${n}` : ""}`);
+  $("privacy").replaceChildren(el("h2", { text: "Blind screening" }),
+    el("div", { class: "evidence", text: removed.length ? `Removed before scoring: ${removed.join(", ")}.` : "No personal details found to remove." }));
+  skillList($("required"), r.required);
+  skillList($("preferred"), r.preferred);
+  $("tips").replaceChildren(...(r.suggestions.length ? r.suggestions.map((t) => el("li", { text: t })) : [el("li", { text: "Nothing to add — this resume covers the posting." })]));
+  $("terms").replaceChildren(...r.shared_terms.map((t) => el("span", { class: "chip", text: t })));
+  $("results").hidden = false;
+}
+
+$("match").addEventListener("click", async () => {
+  const resume = $("resume").value.trim(), job = $("job").value.trim();
+  if (!resume || !job) return;
+  $("match").disabled = true;
+  try {
+    const res = await fetch("/api/match", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ resume, job }) });
+    if (!res.ok) {
+      const detail = (await res.json().catch(() => ({}))).detail;
+      throw new Error(typeof detail === "string" ? detail : detail ? JSON.stringify(detail) : res.statusText);
+    }
+    render(await res.json());
+  } catch (err) {
+    $("hero").replaceChildren(el("div", { class: "error", text: String(err.message || err) }));
+    $("results").hidden = false;
+  } finally {
+    $("match").disabled = false;
+  }
+});
+
+loadSamples().then(() => $("match").click()).catch(console.error);
+</script>
+</body>
+</html>

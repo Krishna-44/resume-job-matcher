@@ -1,0 +1,18 @@
+Hannah Schulz
+hannah.schulz@example.com | +49 151 23456789
+Age: 29
+
+Summary
+Mechanical engineer with four years of product design experience in automotive components.
+
+Experience
+Design Engineer, Example Automotive — Feb 2022 – Present
+- Designed brackets and housings in SolidWorks; reduced part weight 12%
+- Ran tolerance analysis in MATLAB and Excel; coordinated suppliers with Jira
+Graduate Engineer, Example Tools — Aug 2021 – Jan 2022
+
+Education
+B.Eng. in Mechanical Engineering, 2017 – 2021
+
+Skills
+CAD, SolidWorks, AutoCAD, MATLAB, Excel, project management, GD&T

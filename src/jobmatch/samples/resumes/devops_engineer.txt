@@ -1,0 +1,21 @@
+Chen Wei
+chen.wei@example.com | +1 415 555 0199
+Nationality: Example
+
+Summary
+DevOps engineer with five years of experience running cloud infrastructure at scale.
+
+Experience
+Senior DevOps Engineer, Cloudharbor — Jan 2023 – Present
+- Manage 40+ AWS accounts with Terraform; Kubernetes (EKS) platform for 60 services
+- CI/CD with GitHub Actions and Jenkins; cut deploy time from 40 to 8 minutes
+- Observability with Prometheus and Grafana; on-call lead
+DevOps Engineer, Netlayer — Jun 2020 – Dec 2022
+- Linux fleet automation with Ansible and Bash; Docker migration of legacy services
+- Python tooling for cost reports
+
+Education
+B.S. in Computer Engineering, 2016 – 2020
+
+Skills
+AWS, Terraform, Kubernetes, Docker, Linux, Ansible, Bash, Python, GitHub Actions, Jenkins, Prometheus, Grafana, CI/CD

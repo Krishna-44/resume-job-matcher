@@ -1,0 +1,19 @@
+Daniel Okafor
+daniel.okafor@example.com · +44 7700 900123
+
+Summary
+Backend engineer with four years of experience building payment and order services.
+
+Experience
+Software Engineer II, Paystream — Mar 2023 – Present
+- Designed microservices in Java and Spring Boot handling 3k requests/s
+- Event-driven order pipeline on Kafka; PostgreSQL and Redis for storage
+- Deployed with Docker and Kubernetes on AWS (EKS); on-call for payments
+Software Engineer, Orderly — Sep 2021 – Feb 2023
+- REST APIs in Java with MySQL; introduced JUnit and contract tests
+
+Education
+B.E. in Information Technology, 2017 – 2021
+
+Skills
+Java, Spring Boot, Kafka, PostgreSQL, MySQL, Redis, Docker, Kubernetes, AWS, REST APIs, JUnit, Git

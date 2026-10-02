@@ -1,0 +1,17 @@
+Marcus Johnson
+marcus.j@example.com · (555) 444-1020
+
+Summary
+Data scientist with two years of experience in forecasting and customer analytics.
+
+Experience
+Data Scientist, Tidewater Insurance — Jul 2024 – Present
+- Churn models with TensorFlow and Keras; XGBoost baselines; deployed on AWS SageMaker
+- Statistical analysis and hypothesis testing for marketing campaigns
+- Tableau dashboards for the retention team; SQL on Snowflake
+
+Education
+M.S. in Statistics, Example State University, 2022 – 2024
+
+Skills
+Python, TensorFlow, Keras, scikit-learn, XGBoost, SQL, Snowflake, statistics, Tableau, AWS, machine learning

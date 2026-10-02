@@ -1,0 +1,21 @@
+Aarav Mehta
+aarav.mehta@example.com | +91 98765 43210 | github.com/aarav-example
+Date of Birth: 14/02/2004
+
+Summary
+Final-year computer science student focused on machine learning and NLP.
+
+Education
+B.Tech in Computer Science, Example Institute of Technology, 2022 – 2026
+
+Experience
+Machine Learning Intern, Northbeam Analytics — May 2025 – Jul 2025
+- Fine-tuned a Hugging Face transformer for support-ticket classification in PyTorch (F1 0.81 → 0.88)
+- Built data pipelines in pandas and SQL; tracked experiments with MLflow
+
+Projects
+- Resume parser: spaCy + scikit-learn NER pipeline, served with FastAPI in Docker
+- Image classifier with PyTorch and OpenCV for plant disease detection
+
+Skills
+Python, PyTorch, scikit-learn, NumPy, pandas, SQL, Git, Docker, NLP, Deep Learning

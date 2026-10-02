@@ -1,0 +1,15 @@
+Backend Engineer (Java)
+
+About the role
+Own services in our order-management platform.
+
+Requirements
+- 3+ years of backend development
+- Java and Spring Boot
+- PostgreSQL
+- REST APIs and microservices
+- Docker and Kubernetes
+
+Nice to have
+- Kafka
+- AWS

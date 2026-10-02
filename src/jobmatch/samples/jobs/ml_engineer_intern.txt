@@ -1,0 +1,16 @@
+Machine Learning Engineer Intern
+
+About the role
+Join our applied ML team to build models that classify and route customer messages.
+
+Requirements
+- Strong Python skills
+- Experience with PyTorch
+- Understanding of machine learning fundamentals
+- SQL and Git
+- Currently pursuing a Bachelor's or Master's degree in CS or a related field
+
+Nice to have
+- NLP or LLM projects
+- Docker
+- AWS

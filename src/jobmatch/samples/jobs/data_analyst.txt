@@ -1,0 +1,15 @@
+Data Analyst
+
+About the role
+Partner with product and marketing to measure what works.
+
+Requirements
+- 2+ years of experience in an analytics role
+- Advanced SQL and Excel
+- Python or R for analysis
+- Tableau / Power BI
+- Statistics
+
+Nice to have
+- A/B testing
+- dbt

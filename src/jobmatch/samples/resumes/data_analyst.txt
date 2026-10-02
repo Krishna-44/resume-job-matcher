@@ -1,0 +1,20 @@
+Priya Nair
+priya.nair@example.com | 98200 11223
+Gender: Female | Marital Status: Married
+
+Summary
+Data analyst with three years of experience turning product data into decisions.
+
+Experience
+Data Analyst, Cartwheel Retail — Sep 2023 – Present
+- Own weekly KPI dashboards in Tableau and Power BI for 12 product teams
+- Designed and analysed A/B tests on pricing pages; +4.1% conversion
+Junior Analyst, Ledgerline — Jul 2022 – Aug 2023
+- Automated monthly reporting with SQL and Excel pivot tables; saved 10 hours a month
+
+Education
+B.Com, Example University, 2019 – 2022
+Certificate in Statistics for Data Science
+
+Skills
+SQL, Excel, Tableau, Power BI, Python (pandas), statistics, A/B testing, data visualization

@@ -1,0 +1,19 @@
+Sofia Ramirez
+sofia.r@example.com · (555) 201-3344 · linkedin.com/in/sofia-example
+
+Profile
+Front-end developer with two years of experience building accessible, fast web apps.
+
+Experience
+Front-end Developer, Brightloop — Aug 2024 – Present
+- Rebuilt the checkout in React and TypeScript; cut bundle size by 38%
+- Introduced Jest and Playwright tests; coverage from 20% to 75%
+Junior Web Developer, Pixelfield Studio — Jun 2023 – Jul 2024
+- Built marketing pages in Next.js with Tailwind CSS from Figma designs
+- Integrated REST APIs and improved Lighthouse scores to 95+
+
+Education
+B.Sc. in Computer Science, 2019 – 2023
+
+Skills
+JavaScript, TypeScript, React, Next.js, Redux, HTML, CSS, Tailwind CSS, Jest, Playwright, Figma, Git

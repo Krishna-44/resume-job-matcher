@@ -1,0 +1,17 @@
+Full-Stack Developer
+
+About the role
+Ship features across our web app and API.
+
+Requirements
+- 1+ years building web applications
+- JavaScript or TypeScript
+- React
+- Node.js
+- MongoDB or PostgreSQL
+- REST APIs
+- Git
+
+Nice to have
+- GraphQL
+- Docker
