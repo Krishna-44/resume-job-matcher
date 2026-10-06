@@ -9,7 +9,7 @@ description = "Explainable resume-to-job matching: skill extraction with a curat
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "Krishna Goyal" }]
+authors = [{ name = "Krishna Gupta" }]
 keywords = ["nlp", "resume", "job-matching", "information-extraction", "explainable-ai", "fairness", "fastapi"]
 classifiers = [
   "Programming Language :: Python :: 3",

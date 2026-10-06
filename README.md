@@ -185,4 +185,4 @@ ranking, gap analysis, the API and a quality floor on the evaluation set.
 
 ## License
 
-[MIT](LICENSE) © Krishna Goyal
+[MIT](LICENSE) © Krishna Gupta
